@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+import os
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Example REST API endpoint for activities
+    # The endpoint format is: https://$CODESPACE_NAME-8000.app.github.dev/api/activities/
+    # Do not hardcode $CODESPACE_NAME, use the environment variable for documentation and dynamic usage
+    path('api/activities/', include('octofit_tracker.activities.urls')),  # You must have activities/urls.py
 ]
